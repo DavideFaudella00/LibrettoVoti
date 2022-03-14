@@ -28,7 +28,6 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
                   <Label text="Nome Corso" />
@@ -41,4 +40,7 @@
          </children>
       </VBox>
    </center>
+   <bottom>
+      <Label fx:id="txtStatus" textFill="#ea0e0e" BorderPane.alignment="CENTER" />
+   </bottom>
 </BorderPane>

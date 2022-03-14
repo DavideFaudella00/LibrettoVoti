@@ -1,14 +1,15 @@
 package it.polito.tdp.librettovoti;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import Model.Libretto;
 import Model.Voto;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
@@ -32,13 +33,33 @@ public class FXMLController {
 	private TextArea txtVoti;
 
 	@FXML
+	private Label txtStatus;
+
+	@FXML
 	void HandleNuovoVoto(ActionEvent event) {
 		String nome = txtNome.getText();
-		int punti = cmbPunti.getValue();
-		model.add(new Voto(nome, punti));
-		String contenutoLibretto = model.toString();
-		txtVoti.setText(contenutoLibretto);
-		
+		Integer punti = cmbPunti.getValue();
+
+		if (nome.equals("") || (punti == null)) {
+			txtStatus.setText("Inserire nome e voto");
+			return;
+		}
+
+		boolean ok = model.add(new Voto(nome, punti));
+		if (ok == false) {
+			txtStatus.setText("Hai inserito un duplicato");
+			return;
+		}
+
+		List<Voto> voti = model.getVoti();
+		txtVoti.clear();
+		txtVoti.appendText("Hai superato " + voti.size() + " esami \n");
+		for (Voto v : voti) {
+			txtVoti.appendText(v.toString() + "\n");
+		}
+		txtNome.clear();
+		cmbPunti.setValue(null);
+		txtStatus.setText("");
 	}
 
 	public void setModel(Libretto model) {

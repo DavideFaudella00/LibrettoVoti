@@ -11,8 +11,12 @@ public class Libretto {
 		this.voti = new ArrayList<Voto>();
 	}
 
-	public void add(Voto v) {
-		this.voti.add(v);
+	public boolean add(Voto v) {
+		if (!isDuplicato(v) && !isConflitto(v)) {
+			this.voti.add(v);
+			return true;
+		}
+		return false;
 	}
 
 	// 2
@@ -54,6 +58,35 @@ public class Libretto {
 			return true;
 		else
 			return false;
+	}
+
+	public List<Voto> getVoti() {
+		return this.voti;
+	}
+
+	public Libretto votiMigliorati() {
+		Libretto nuovo = new Libretto();
+		for (Voto v : this.voti) {
+			int punti = v.getPunti();
+			if (punti >= 24) {
+				punti += 2;
+			} else {
+				punti++;
+			}
+			if (punti > 30) {
+				punti = 30;
+			}
+			nuovo.add(new Voto(v.getNome(), punti));
+		}
+		return nuovo;
+	}
+
+	public void cancellaVotiMinori(int punti) {
+		for (Voto v : this.voti) {
+			if (v.getPunti() < punti) {
+				this.voti.remove(v);
+			}
+		}
 	}
 
 	@Override
