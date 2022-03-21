@@ -64,6 +64,12 @@ public class FXMLController {
 
 	public void setModel(Libretto model) {
 		this.model = model;
+		List<Voto> voti = model.getVoti();
+		txtVoti.clear();
+		txtVoti.appendText("Hai superato " + voti.size() + " esami \n");
+		for (Voto v : voti) {
+			txtVoti.appendText(v.toString() + "\n");
+		}
 	}
 
 	@FXML
