@@ -11,7 +11,7 @@ public class EntryPoint extends Application {
 
 	@Override
 	public void start(Stage stage) throws Exception {
-		// Parent root = FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"));
+//      Parent root = FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"));
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Scene.fxml"));
 		Parent root = loader.load();
 
@@ -23,7 +23,7 @@ public class EntryPoint extends Application {
 		Libretto model = new Libretto();
 		controller.setModel(model);
 
-		stage.setTitle("JavaFX and Maven");
+		stage.setTitle("Libretto Voti TdP-2022");
 		stage.setScene(scene);
 		stage.show();
 	}

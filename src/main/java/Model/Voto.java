@@ -1,13 +1,17 @@
 package Model;
 
-public class Voto {
+import java.time.LocalDate;
 
+public class Voto {
 	private String nome;
 	private int punti;
+	private LocalDate data;
 
-	public Voto(String nome, int punti) {
+	public Voto(String nome, int punti, LocalDate data) {
+		super();
 		this.nome = nome;
 		this.punti = punti;
+		this.data = data;
 	}
 
 	public String getNome() {
@@ -26,13 +30,19 @@ public class Voto {
 		this.punti = punti;
 	}
 
-	// 1
-	@Override
-	public String toString() {
-		return nome + ": " + punti;
+	public LocalDate getData() {
+		return data;
 	}
 
-	// 4
+	public void setData(LocalDate data) {
+		this.data = data;
+	}
+
+	@Override
+	public String toString() {
+		return nome + " : " + punti + " (" + this.data.toString() + ")";
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -42,7 +52,6 @@ public class Voto {
 		return result;
 	}
 
-	// 4
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
